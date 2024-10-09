@@ -1,3 +1,1 @@
-local add, now = MiniDeps.add, MiniDeps.now
-
-add({ source = "rebelot/kanagawa.nvim" })
+MiniDeps.add({ source = "rebelot/kanagawa.nvim" })
