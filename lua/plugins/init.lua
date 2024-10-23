@@ -5,8 +5,9 @@ require("plugins.conform")
 require("plugins.nvim-lint")
 require("plugins.tmux")
 require("plugins.treesitter")
-require("plugins.yanky")
+-- require("plugins.yanky")
 require("plugins.fugitive")
+-- require("plugins.remote")
 
 require("plugins.mini.starter")
 require("plugins.mini.basics")
@@ -18,3 +19,7 @@ require("plugins.mini.pick")
 require("plugins.mini.surround")
 require("plugins.mini.statusline")
 require("plugins.mini.notify")
+
+-- custom
+
+require("plugins.sync-to-coder")

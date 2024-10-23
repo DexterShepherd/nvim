@@ -3,7 +3,6 @@ local add, later = MiniDeps.add, MiniDeps.later
 add({ source = "mfussenegger/nvim-lint" })
 
 local function config()
-	print("lint loaded")
 	local lint = require("lint")
 	lint.linters_by_ft = {
 		javascript = { "eslint_d" },

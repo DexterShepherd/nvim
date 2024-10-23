@@ -32,9 +32,25 @@ local function configure()
 			"yamlls",
 		},
 	})
+
+	local lspconfig = require("lspconfig")
 	require("mason-lspconfig").setup_handlers({
 		function(server_name) -- default handler (optional)
-			require("lspconfig")[server_name].setup({})
+			lspconfig[server_name].setup({})
+		end,
+		["ts_ls"] = function()
+			local function organize_imports()
+				local params = {
+					command = "_typescript.organizeImports",
+					arguments = { vim.api.nvim_buf_get_name(0) },
+					title = "",
+				}
+				vim.lsp.buf.execute_command(params)
+			end
+			lspconfig["ts_ls"].setup({
+				on_attach = function() end,
+				commands = { OrganizeImports = { description = "Organize imports", organize_imports } },
+			})
 		end,
 	})
 

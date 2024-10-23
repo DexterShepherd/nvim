@@ -2,7 +2,7 @@ local add, later = MiniDeps.add, MiniDeps.later
 
 add({ source = "nvim-treesitter/nvim-treesitter" })
 
-function config()
+local config = function()
 	local treesitter = require("nvim-treesitter.configs")
 
 	treesitter.setup({
@@ -32,4 +32,4 @@ function config()
 	})
 end
 
-later(config())
+later(config)
