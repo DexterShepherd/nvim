@@ -47,6 +47,17 @@ local function send_to_quickfix()
 end
 
 function config()
+	local win_config = function()
+		height = math.floor(0.618 * vim.o.lines)
+		width = math.floor(0.618 * vim.o.columns)
+		return {
+			anchor = "NW",
+			height = height,
+			width = width,
+			row = math.floor(0.5 * (vim.o.lines - height)),
+			col = math.floor(0.5 * (vim.o.columns - width)),
+		}
+	end
 	require("mini.pick").setup({
 		options = { use_cache = true },
 		mappings = {
@@ -55,9 +66,22 @@ function config()
 				func = send_to_quickfix,
 			},
 		},
+		window = { config = win_config },
 	})
 
-	vim.keymap.set("n", "<leader>sf", MiniPick.builtin.files, { desc = "[Search Files] pick fro files with mini.pick" })
+	vim.keymap.set(
+		"n",
+		"<leader>sf",
+		MiniPick.builtin.files,
+		{ desc = "[Search Files] pick from files with mini.pick" }
+	)
+
+	vim.keymap.set(
+		"n",
+		"<leader>sb",
+		MiniPick.builtin.buffers,
+		{ desc = "[Search buffers] pick from buffers with mini.pick" }
+	)
 
 	vim.keymap.set(
 		"n",

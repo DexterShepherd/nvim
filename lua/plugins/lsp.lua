@@ -12,6 +12,10 @@ add({
 	source = "williamboman/mason-lspconfig.nvim",
 })
 
+add({
+	source = "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+})
+
 local function configure()
 	require("mason").setup()
 	require("mason-lspconfig").setup({
@@ -27,9 +31,9 @@ local function configure()
 			"pyright",
 			"ruff",
 			"stylelint_lsp",
-			"grammarly",
 			"vimls",
 			"yamlls",
+			"marksman",
 		},
 	})
 
@@ -81,6 +85,18 @@ local function configure()
 		group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 		callback = on_attach,
 	})
+
+	require("lsp_lines").setup()
+	require("lsp_lines").toggle()
+
+	local toggle = function()
+		local value = require("lsp_lines").toggle()
+		-- if lsp lines is on, turn off virtual lines
+		vim.diagnostic.config({
+			virtual_text = not value,
+		})
+	end
+	vim.keymap.set("", "<Leader>l", toggle, { desc = "Toggle lsp_lines" })
 end
 
 later(configure())

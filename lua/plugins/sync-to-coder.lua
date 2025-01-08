@@ -4,6 +4,7 @@ local sync_to_coder = function()
 		local server
 
 		vim.ui.select({
+			"coder.workspace.main",
 			"coder.si-8.main",
 			"coder.si.main",
 		}, { prompt = "Select server" }, function(choice)
