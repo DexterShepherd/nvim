@@ -11,3 +11,10 @@ vim.keymap.set("n", "<leader>dn", ":OpenDailyNote<cr>", { desc = "Open daily not
 vim.keymap.set("n", "<leadef>b", ":b#<cr>", { desc = "Prev buffer" })
 
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+
+vim.keymap.set("n", "<leader>sf", "<CMD>FzfLua files<CR>", { desc = "[s]earch [f]iles" })
+
+vim.keymap.set("n", "<C-h>", "<Cmd>NvimTmuxNavigateLeft<CR>", {})
+vim.keymap.set("n", "<C-j>", "<Cmd>NvimTmuxNavigateDown<CR>", {})
+vim.keymap.set("n", "<C-k>", "<Cmd>NvimTmuxNavigateUp<Cr>", {})
+vim.keymap.set("n", "<C-l>", "<Cmd>NvimTmuxNavigateRight<Cr>", {})
