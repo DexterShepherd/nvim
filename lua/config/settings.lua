@@ -27,3 +27,5 @@ o.termguicolors = true
 global.mapleader = " "
 global.maplocalleader = " "
 
+-- Faster cursor hold
+o.updatetime = 2000
