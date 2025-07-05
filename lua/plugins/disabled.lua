@@ -3,6 +3,7 @@ return {
   { "folke/flash.nvim", enabled = false },
   { "akinsho/bufferline.nvim", enabled = false },
   { "folke/noice.nvim", enabled = false },
+  { "lewis6991/gitsigns.nvim", enabled = false },
   {
     "folke/snacks.nvim",
     opts = {

@@ -18,3 +18,5 @@ vim.keymap.set("n", "<C-h>", "<Cmd>NvimTmuxNavigateLeft<CR>", {})
 vim.keymap.set("n", "<C-j>", "<Cmd>NvimTmuxNavigateDown<CR>", {})
 vim.keymap.set("n", "<C-k>", "<Cmd>NvimTmuxNavigateUp<Cr>", {})
 vim.keymap.set("n", "<C-l>", "<Cmd>NvimTmuxNavigateRight<Cr>", {})
+
+-- vim.keymap.set("n", "<leader>sm", "<cmd>ShowReferencingFiles<cr>", { desc = "Show markdown references" })

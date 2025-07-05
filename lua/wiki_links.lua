@@ -1,0 +1,122 @@
+-- local source = {}
+--
+-- -- Function to extract title from frontmatter
+-- local function get_title_from_frontmatter(filepath)
+--   -- Check if file exists
+--   if vim.fn.filereadable(filepath) == 0 then
+--     return nil
+--   end
+--
+--   -- Read first few lines to find frontmatter
+--   local lines = vim.fn.readfile(filepath, '', 10) -- read first 10 lines
+--   if not lines or #lines == 0 then
+--     return nil
+--   end
+--
+--   -- Check if first line is frontmatter delimiter
+--   if lines[1] ~= '---' then
+--     return nil
+--   end
+--
+--   -- Look for title in frontmatter
+--   for i = 2, #lines do
+--     if lines[i] == '---' then
+--       break -- end of frontmatter
+--     end
+--
+--     local title_match = lines[i]:match('^title:%s*(.+)$')
+--     if title_match then
+--       return vim.trim(title_match)
+--     end
+--   end
+--
+--   return nil
+-- end
+--
+-- -- Get all markdown files in notes directory with their titles
+-- local function get_markdown_files()
+--   local notes_dir = vim.fn.expand('~/Documents/notes')
+--   local files = {}
+--
+--   -- Use vim.fs.find to get all .md files recursively, excluding legacy folder
+--   local md_files = vim.fs.find(function(name, path)
+--     return name:match('%.md$') and not path:match('/legacy/')
+--   end, {
+--     limit = math.huge,
+--     type = 'file',
+--     path = notes_dir,
+--   })
+--
+--   for _, filepath in ipairs(md_files) do
+--     local filename = vim.fn.fnamemodify(filepath, ':t:r') -- get filename without extension
+--     local title = get_title_from_frontmatter(filepath)
+--
+--     if title then
+--       table.insert(files, {
+--         filename = filename,
+--         title = title,
+--         filepath = filepath,
+--       })
+--     end
+--   end
+--
+--   return files
+-- end
+--
+-- function source.new(opts)
+--   local self = setmetatable({}, { __index = source })
+--   self.opts = opts or {}
+--   return self
+-- end
+--
+-- -- Only enable in markdown files
+-- function source:enabled()
+--   return vim.bo.filetype == 'markdown'
+-- end
+--
+-- -- No specific trigger characters - let it trigger on any keystroke in markdown
+-- function source:get_trigger_characters()
+--   return {}
+-- end
+--
+-- function source:get_completions(ctx, callback)
+--   -- Check if we're in a [[ context and extract what user has typed
+--   local line = ctx.line
+--   local col = ctx.cursor[2]
+--   local before_cursor = line:sub(1, col)
+--
+--   -- Extract the text after [[ that the user has typed
+--   local wiki_text = before_cursor:match('%[%[([^%]]*)$')
+--   if not wiki_text then
+--     callback({ items = {} })
+--     return
+--   end
+--
+--   -- Get all markdown files with titles
+--   local files = get_markdown_files()
+--   local items = {}
+--
+--   for _, file in ipairs(files) do
+--     -- Create completion item that shows the title but inserts filename|title
+--     table.insert(items, {
+--       label = file.title, -- Show the title in completion menu
+--       insertText = file.filename .. '|' .. file.title, -- Insert filename|title
+--       filterText = file.title, -- Filter based on title text
+--       kind = require('blink.cmp.types').CompletionItemKind.File,
+--       documentation = {
+--         kind = 'markdown',
+--         value = string.format('**%s**\n\nFile: `%s`', file.title, file.filename)
+--       },
+--       data = {
+--         filename = file.filename,
+--         title = file.title,
+--         filepath = file.filepath,
+--       }
+--     })
+--   end
+--
+--   callback({ items = items })
+-- end
+--
+-- return source
+

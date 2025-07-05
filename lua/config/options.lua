@@ -8,3 +8,11 @@ if vim.g.neovide then
 end
 
 vim.g.snacks_animate = false
+
+-- Set colorcolumn at 80 characters for markdown files
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "markdown",
+  callback = function()
+    vim.opt_local.colorcolumn = "80"
+  end,
+})
