@@ -1,6 +1,6 @@
 vim.api.nvim_create_user_command("OpenDailyNote", function()
   local formatted_date = os.date("%Y-%m-%d")
-  local path = string.format("~/Documents/notes/%s.md", formatted_date)
+  local path = string.format("~/Documents/notes/Dailies/%s.md", formatted_date)
   vim.cmd(string.format("tab drop %s", path))
   vim.cmd("tcd ~/Documents/notes")
 end, {})
@@ -29,7 +29,8 @@ local function set_background_from_system()
   if result:match("Dark") then
     vim.o.background = "dark"
   else
-    vim.o.background = "light"
+    -- vim.o.background = "light"
+    vim.o.background = "dark"
   end
 end
 

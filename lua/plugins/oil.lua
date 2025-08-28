@@ -1,6 +1,12 @@
 return {
-  'stevearc/oil.nvim',
-  opts = {},
+  "stevearc/oil.nvim",
+  opts = {
+    view_options = { show_hidden = true },
+    keymaps = {
+      ["<C-h>"] = false,
+      ["<C-l>"] = false,
+    },
+  },
   dependencies = { { "echasnovski/mini.icons", opts = {} } },
   lazy = false,
 }

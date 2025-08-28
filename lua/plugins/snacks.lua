@@ -8,6 +8,7 @@ return {
     picker = { enabled = true },
     notifier = { enabled = true },
     statuscolumn = { enabled = true },
+    input = { enabled = true },
   },
   keys = {
     {
@@ -29,7 +30,7 @@ return {
     {
       "<leader>ff",
       function()
-        Snacks.picker.files()
+        Snacks.picker.files({ hidden = true, ignored = true })
       end,
       desc = "Find Files",
     },
@@ -55,6 +56,27 @@ return {
         Snacks.picker.notifications()
       end,
       desc = "Recent",
+    },
+    {
+      "<leader>fk",
+      function()
+        Snacks.picker.keymaps()
+      end,
+      desc = "Keymaps",
+    },
+    {
+      "<leader>fd",
+      function()
+        Snacks.picker.diagnostics_buffer()
+      end,
+      desc = "Diagnostics buffer",
+    },
+    {
+      "<leader>fd",
+      function()
+        Snacks.picker.diagnostics()
+      end,
+      desc = "Diagnostics",
     },
     -- git
     {
